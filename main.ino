@@ -11,14 +11,14 @@ int offset = 0;
 int pickpose1 = 0;
 int pickpose2 = 0;
 int pickpose3 = 0;
-int PICK_PLACE11 = 140;
-int PICK_PLACE12 = 140;
-// int PICK_PLACE12 = 160;
-int PICK_PLACE21 =130;
-int PICK_PLACE22 =130;
-// int PICK_PLACE22 = 150;
-int PICK_PLACE31 = 35;
-int PICK_PLACE32 = 35;
+int PICK_PLACE11 = 60;
+// int PICK_PLACE12 = 140;
+int PICK_PLACE12 = 60;
+int PICK_PLACE21 =60;
+// int PICK_PLACE22 =130;
+int PICK_PLACE22 = 60;
+int PICK_PLACE31 = 60;
+int PICK_PLACE32 = 60;
 // int PICK_PLACE32 = 15;
 int armSpeed = 60;
 void setup(){
@@ -72,15 +72,15 @@ void loop(){
       if(att == "spd"){
         String spd = s.substring(6, 8);
         armSpeed = spd.toInt();
-        arm.setSpeed((armSpeed / 2) * 200);
+        arm.setSpeed((armSpeed / 3) * 200);
         arm.step(-2000);
         delay(50);
         arm.step(2000);
       }
       else if(att == "ofs"){
-        String ofs = s.substring(6, 9);
+        String ofs = s.substring(6, 10);
         int offset = ofs.toInt();
-        arm.setSpeed(abs((armSpeed / 2) * offset));
+        arm.setSpeed(abs((armSpeed / 3) * offset));
         arm.step(-10 * offset);
       }
       else if(att[0] == "p"){
@@ -168,14 +168,14 @@ void loop(){
     //Serial.println(angoosht);
     //Serial.println(angooshtflag);
     //Serial.println(picknum);
-    if(armp >= 100 && armp<999){
+    if(armp >= 100 && armp<850){
       if (armp != pos){
         for(int i = 1; i <= 9; i++){
         digitalWrite(i, LOW);
         }
         //delay(25);
       }
-      arm.setSpeed((armSpeed / 2) * abs(armp - pos));
+      arm.setSpeed((armSpeed / 3) * abs(armp - pos));
       arm.step((armp-pos) * -10);
       //delay(100);
       pos = armp;
