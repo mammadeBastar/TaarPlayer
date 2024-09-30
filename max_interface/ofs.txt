@@ -1,0 +1,8 @@
+5, setofs5; 
+10, setofs10;
+50, setofs50;
+100, setofs100;
+-99, setofs-99;
+-50, setofs-50;
+-10, setofs-10;
+-5, setofs-5;
