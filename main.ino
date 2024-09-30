@@ -8,16 +8,16 @@ Servo pickTwo;
 Servo pickThree;
 int pos = 100;
 int offset = 0;
-int pickpose1 = 140;
-int pickpose2 = 140;
-int pickpose3 = 140;
-int PICK_PLACE11 = 60;
+int pickpose1 = 0;
+int pickpose2 = 0;
+int pickpose3 = 0;
+int PICK_PLACE11 = 100;
 // int PICK_PLACE12 = 140;
 int PICK_PLACE12 = 60;
-int PICK_PLACE21 =60;
+int PICK_PLACE21 =100;
 // int PICK_PLACE22 =130;
 int PICK_PLACE22 = 60;
-int PICK_PLACE31 = 60;
+int PICK_PLACE31 = 100;
 int PICK_PLACE32 = 60;
 // int PICK_PLACE32 = 15;
 int armSpeed = 60;
@@ -117,7 +117,7 @@ void loop(){
     int armp = sarmp.toInt();
     int angoosht = sangoosht.toInt();
     if(picknum == "4"){
-      digitalWrite(2, LOW);
+      digitalWrite(7, LOW);
       digitalWrite(6, LOW);
           if(pickpose1 == 0){
             //pickOne.write(PICK_PLACE12 + 10);
@@ -133,7 +133,7 @@ void loop(){
     }
     else if(picknum == "5"){
       digitalWrite(4, LOW);
-      digitalWrite(5, LOW);
+      digitalWrite(2, LOW);
       digitalWrite(8, LOW);
           if(pickpose2 == 0){
             //pickTwo.write(PICK_PLACE22 + 10);
@@ -149,7 +149,7 @@ void loop(){
     }
     else if(picknum == "6"){
       digitalWrite(3, LOW);
-      digitalWrite(7, LOW);
+      digitalWrite(5, LOW);
       digitalWrite(9, LOW);
         if(pickpose3 == 0){
             //pickThree.write(PICK_PLACE32 - 10);
@@ -185,21 +185,21 @@ void loop(){
       //if(angooshtflag == "0"){
       //  digitalWrite(angoosht, LOW);
       //}
-        if(angoosht == 2){
+        if(angoosht == 7){
           digitalWrite(6, LOW);
         }
-        else if(angoosht == 5){
-          digitalWrite(8, LOW);
-        }
         else if(angoosht == 4){
-          digitalWrite(5, LOW);
-          digitalWrite(8, LOW);
+          digitalWrite(2, LOW);
         }
-        else if(angoosht == 7){
+        else if(angoosht == 8){
+          digitalWrite(2, LOW);
+          digitalWrite(4, LOW);
+        }
+        else if(angoosht == 5){
           digitalWrite(9, LOW);
         }
         else if(angoosht == 3){
-          digitalWrite(7, LOW);
+          digitalWrite(5, LOW);
           digitalWrite(9, LOW);
         }
         digitalWrite(angoosht, HIGH);
