@@ -1,0 +1,4 @@
+20, setspd20;
+40, setspd40;
+60, setspd60;
+80, setspd80;
