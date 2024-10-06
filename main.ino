@@ -11,14 +11,14 @@ int offset = 0;
 int pickpose1 = 0;
 int pickpose2 = 0;
 int pickpose3 = 0;
-int PICK_PLACE11 = 100;
+int PICK_PLACE11 = 70;
 // int PICK_PLACE12 = 140;
-int PICK_PLACE12 = 60;
-int PICK_PLACE21 =100;
+int PICK_PLACE12 = 110;
+int PICK_PLACE21 =70;
 // int PICK_PLACE22 =130;
-int PICK_PLACE22 = 60;
-int PICK_PLACE31 = 100;
-int PICK_PLACE32 = 60;
+int PICK_PLACE22 = 110;
+int PICK_PLACE31 = 65;
+int PICK_PLACE32 = 100;
 // int PICK_PLACE32 = 15;
 int armSpeed = 60;
 void setup(){
@@ -67,7 +67,29 @@ void loop(){
       Serial.print(PICK_PLACE32);
       Serial.print(' ');
     }
-    if(sarmp == "set"){
+    else if(sarmp == "mtr"){
+      String frq = s.substring(6, 10);
+      String tm = s.substring(4, 5);
+      int timet = tm.toInt();
+      Serial.print(timet);
+      int frequency = frq.toInt();
+      if(frequency <= 4000){
+        for(int i = 1; i <= 9; i++){
+          digitalWrite(i, LOW);
+        }
+        if(pos < 400){
+          arm.setSpeed(frequency);
+          arm.step(-frequency * timet / 10);
+          pos = pos + (frequency * timet / 100);
+        }
+        else if(pos < 800){
+          arm.setSpeed(frequency);
+          arm.step(frequency * timet / 10);
+          pos = pos - (frequency* timet / 100);
+        }
+      }
+    }
+    else if(sarmp == "set"){
       String att = s.substring(3, 6);
       if(att == "spd"){
         String spd = s.substring(6, 8);
@@ -80,6 +102,9 @@ void loop(){
       else if(att == "ofs"){
         String ofs = s.substring(6, 10);
         int offset = ofs.toInt();
+        for(int i = 1; i <= 9; i++){
+          digitalWrite(i, LOW);
+        }
         arm.setSpeed(abs((armSpeed / 3) * offset));
         arm.step(-10 * offset);
       }
@@ -111,6 +136,7 @@ void loop(){
         }
       }
     }
+    else{
     String sangoosht = s.substring(4,5);
     String angooshtflag = s.substring(6,7);
     String picknum = s.substring(8, 9);
@@ -246,7 +272,7 @@ void loop(){
             pickpose3 = 0;
           }
         }
-    }
+    }}
 
       //}
       //if(angooshtflag == "0"){
